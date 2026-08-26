@@ -14,8 +14,24 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    lazy = false, -- Carrega no início para monitorar pastas/projetos em tempo real
     opts = {
+      -- Sincroniza a raiz da árvore com a pasta atual de trabalho (cwd)
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+
+      -- Atualiza a árvore focando automaticamente no arquivo aberto
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
+
+      -- Observa mudanças no sistema de arquivos para atualizar sozinho
+      filesystem_watchers = {
+        enable = true,
+        debounce_delay = 50,
+      },
+
       git = {
         enable = true,       -- Ativa integração com Git
         ignore = false,      -- Não esconde arquivos listados no .gitignore
@@ -23,6 +39,10 @@ return {
       },
       filters = {
         dotfiles = false,    -- Mostra arquivos ocultos (que começam com ponto)
+      },
+      view = {
+        width = 35,
+        side = "left",
       },
     },
   },
