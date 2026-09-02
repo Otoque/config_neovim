@@ -1,5 +1,3 @@
-# Sua config migrada para Lua
-
 ## Como instalar
 
 1. Faça backup e remova a config antiga:
